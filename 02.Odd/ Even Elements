@@ -1,0 +1,95 @@
+using System;
+
+class OddOrEvenElements
+{
+    static void Main()
+    {
+        string list = Console.ReadLine();
+        if (list=="")
+        {
+            Console.Write("OddSum={0}, ", "No");
+            Console.Write("OddMin={0}, ", "No");
+            Console.Write("OddMax={0}, ", "No"); 
+            Console.Write("EvenSum={0}, ", "No");
+            Console.Write("EvenMin={0}, ", "No");
+            Console.Write("EvenMax={0}  ", "No"); 
+            return;
+        }
+        string[] str = list.Split();
+        decimal[] num = new decimal[str.Length];
+        decimal oddSum = 0;
+        decimal evenSum = 0;
+        decimal oddMin = Convert.ToDecimal(str[0]);
+        decimal oddMax = Convert.ToDecimal(str[0]);
+        decimal evenMin = 0;
+        decimal evenMax = 0;
+        if (str.Length == 1)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                num[i] = Convert.ToDecimal(str[i]);
+                if (i % 2 == 0)
+                {
+                    if (oddMin > num[i])
+                    {
+                        oddMin = num[i];
+                    }
+                    if (oddMax < num[i])
+                    {
+                        oddMax = num[i];
+                    }
+                    oddSum += num[i];
+                }
+            }
+        }
+        else
+        {
+            evenMin = Convert.ToDecimal(str[1]);
+            evenMax = Convert.ToDecimal(str[1]);
+            for (int i = 0; i < str.Length; i++)
+            {
+                num[i] = Convert.ToDecimal(str[i]);
+                if (i % 2 == 0)
+                {
+                    if (oddMin > num[i])
+                    {
+                        oddMin = num[i];
+                    }
+                    if (oddMax < num[i])
+                    {
+                        oddMax = num[i];
+                    }
+                    oddSum += num[i];
+                }
+                else
+                {
+                    if (evenMin > num[i])
+                    {
+                        evenMin = num[i];
+                    }
+                    if (evenMax < num[i])
+                    {
+                        evenMax = num[i];
+                    }
+                    evenSum += num[i];
+                }
+            }
+        }
+        Console.Write("OddSum={0}, ", (double)oddSum);
+        Console.Write("OddMin={0}, ", (double)oddMin);
+        Console.Write("OddMax={0}, ", (double)oddMax);
+        if (str.Length==1)
+        {
+           Console.Write("EvenSum={0}, ", "No");
+           Console.Write("EvenMin={0}, ", "No");
+           Console.Write("EvenMax={0}  ", "No"); 
+        }
+        else
+        {
+            Console.Write("EvenSum={0}, ", (double)evenSum);
+            Console.Write("EvenMin={0}, ", (double)evenMin);
+            Console.Write("EvenMax={0} ", (double)evenMax);
+        }
+    }
+}
+
