@@ -1,0 +1,80 @@
+using System;
+using System.Globalization;
+
+class ExamSchedule
+{
+    static void Main()
+    {
+        int hour = int.Parse(Console.ReadLine());
+        int minutes = int.Parse(Console.ReadLine());
+        int examEndsHours = 0;
+        int examEndsMinutes = 0;
+        string partOfTheDay = Console.ReadLine();
+        string resultMinutes = examEndsMinutes.ToString();
+        string resultHours = examEndsHours.ToString();
+        int durationHours = int.Parse(Console.ReadLine());
+        int durationMinutes = int.Parse(Console.ReadLine());
+        if (hour + durationHours >= 12)
+        {
+            examEndsHours = Math.Abs((durationHours + hour) % 12);
+            if (hour + durationHours == 24)
+            {
+                examEndsHours = 12;
+            }
+            if (hour + durationHours > 24)
+            {
+
+            }
+            if (partOfTheDay == "AM" && hour + durationHours > 12)
+            {
+                partOfTheDay = "PM";
+            }
+            else if (partOfTheDay == "PM" && hour + durationHours > 12)
+            {
+                partOfTheDay = "AM";
+            }
+        }
+        else
+        {
+            examEndsHours = durationHours + hour;
+        }
+        if (minutes + durationMinutes >= 60)
+        {
+            examEndsMinutes = Math.Abs(minutes + durationMinutes - 60);
+            examEndsHours = examEndsHours + 1;
+            if (partOfTheDay == "AM")
+            {
+                partOfTheDay = "PM";
+            }
+            else if (partOfTheDay == "PM")
+            {
+                partOfTheDay = "AM";
+            }
+        }
+        else
+        {
+            examEndsMinutes = minutes + durationMinutes;
+        }
+        if (examEndsMinutes < 10)
+        {
+            resultMinutes = "0" + examEndsMinutes;
+        }
+        else
+        {
+            resultMinutes = examEndsMinutes.ToString();
+        }
+        if (examEndsHours < 10)
+        {
+            resultHours = "0" + examEndsHours;
+        }
+        else
+        {
+            resultHours = examEndsHours.ToString();
+        }
+        Console.WriteLine("{0}:{1}:{2}", resultHours, resultMinutes, partOfTheDay, "HH:MM:partOfTheDay", CultureInfo.InvariantCulture);
+    }
+}
+
+
+ 
+
